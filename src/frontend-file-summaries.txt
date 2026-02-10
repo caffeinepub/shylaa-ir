@@ -1,0 +1,7 @@
+{
+  "frontend/src/i18n/LanguageProvider.tsx": "Language context provider managing Persian/English toggle, RTL/LTR direction switching, and localStorage persistence with translation helper function using ES6 import instead of require().",
+  "frontend/src/components/submissions/StatusBadge.tsx": "Status badge component that displays submission plan status using enum comparison instead of property checking, with color-coded variants for each status.",
+  "frontend/src/components/submissions/SubmissionPlanEditor.tsx": "Submission plan editor component with status dropdown, notes textarea, and submission URL input, using ListingStatus enum values for status management.",
+  "frontend/src/pages/platforms/PlatformDetailPage.tsx": "Platform detail page showing full platform information with add-to-plan functionality using ListingStatus enum for initial status.",
+  "frontend/src/pages/submissions/SubmissionPlanDashboardPage.tsx": "Submission plan dashboard with status summary cards and list of user's submission plans, using enum comparison for status filtering."
+}

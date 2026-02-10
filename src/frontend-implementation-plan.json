@@ -1,0 +1,514 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "shylaa.ir Persian-first SEO & Content Marketing Dashboard (Frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement Persian-first RTL UI with English LTR option, including typography, numerals, and correct rich-text rendering.",
+      "acceptanceCriteria": [
+        "App supports RTL layout for Persian and LTR for English via a language toggle.",
+        "Core screens are usable on mobile and desktop without horizontal scrolling.",
+        "Generated content views render Persian punctuation/line breaks correctly."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the root App with app-wide providers (language/dir), responsive layout shell, and route wiring for the required modules."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Set up correct default lang/dir metadata for Persian-first UX and ensure the root document can switch direction at runtime."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global RTL/LTR-friendly base styles, Persian-first font stack, and typographic defaults that preserve punctuation and line breaks in rich text outputs."
+        },
+        {
+          "path": "frontend/src/i18n/LanguageProvider.tsx",
+          "operation": "create",
+          "description": "Implement a lightweight i18n/language toggle (fa/en) that updates direction (RTL/LTR), locale (fa-IR/en-US), and persists the choice (e.g., localStorage)."
+        },
+        {
+          "path": "frontend/src/i18n/messages.ts",
+          "operation": "create",
+          "description": "Add Persian (primary) and English (secondary) UI strings used across modules and help content."
+        },
+        {
+          "path": "frontend/src/utils/locale.ts",
+          "operation": "create",
+          "description": "Add locale helpers for Persian numerals/date formatting (Intl.NumberFormat/Intl.DateTimeFormat) and safe rendering for multi-line text."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add Internet Identity sign-in UI and gate all mutation actions behind authenticated sessions.",
+      "acceptanceCriteria": [
+        "A user can sign in/out with Internet Identity.",
+        "When signed out, mutation actions (create/edit/delete) are disabled and prompt sign-in.",
+        "When signed in, the user can access admin/workspace features."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Add a login/logout button using the existing Internet Identity hook; when logging out, clear cached data via react-query. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Create a first-login profile setup modal that calls getCallerUserProfile/saveCallerUserProfile and avoids modal flash per the authorization component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useAuth.ts",
+          "operation": "create",
+          "description": "Create auth helpers (isAuthenticated, role, isAdmin) backed by getCallerUserRole/isCallerAdmin and Internet Identity state. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAuth.tsx",
+          "operation": "create",
+          "description": "Add a route/content guard wrapper that blocks unauthenticated users from workspace/admin pages while allowing public browsing screens."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAdmin.tsx",
+          "operation": "create",
+          "description": "Add an admin-only guard wrapper that shows an access denied view when a non-admin user visits admin routes. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/common/AccessDeniedScreen.tsx",
+          "operation": "create",
+          "description": "Create an access denied screen used for unauthorized routes and authorization errors surfaced from backend calls."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire auth UI into the global header (login button, current user display) and gate mutation controls across module screens."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Ensure actor recreation and react-query cache invalidation are coordinated with login/logout flows to prevent stale authenticated data being shown after logout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build the Free Site Listing UI: platform catalog list with filters and a platform detail view; allow authenticated CRUD with confirmation.",
+      "acceptanceCriteria": [
+        "Backend stores platform entries with fields for category/topic, region, impact score, traffic score, and a step-by-step guide.",
+        "Frontend provides list + filters (category, region, impact/traffic) and a platform detail page.",
+        "Authenticated users can create/edit/delete platform entries; unauthenticated users can only view."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/platforms/PlatformsListPage.tsx",
+          "operation": "create",
+          "description": "Create a responsive catalog list page with filters (category, country/region, impact/traffic range presentation) and search results from the backend search capability."
+        },
+        {
+          "path": "frontend/src/pages/platforms/PlatformDetailPage.tsx",
+          "operation": "create",
+          "description": "Create a platform detail view showing description, requirements, and step-by-step submission guide with RTL-safe rich text rendering."
+        },
+        {
+          "path": "frontend/src/components/platforms/PlatformFilters.tsx",
+          "operation": "create",
+          "description": "Add filter UI controls for category and country/region and map to catalog search calls; ensure RTL-friendly form control layout."
+        },
+        {
+          "path": "frontend/src/components/platforms/PlatformFormDialog.tsx",
+          "operation": "create",
+          "description": "Add create/edit UI for platform entries (authenticated only), including confirmation for destructive actions; compose using existing UI components (do not modify immutable ui paths)."
+        },
+        {
+          "path": "frontend/src/components/common/ConfirmDialog.tsx",
+          "operation": "create",
+          "description": "Add a reusable confirmation dialog used by destructive actions in admin/workspace areas."
+        },
+        {
+          "path": "frontend/src/hooks/usePlatformCatalog.ts",
+          "operation": "create",
+          "description": "Create react-query hooks for listing/searching and reading platform entries, plus authenticated mutations for create/update (and delete if supported by backend typing)."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update frontend backend type definitions as needed to support platform detail fetch and deletion capability used by the UI, keeping names aligned with backend capabilities."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire routes and navigation entries for Platforms list and Platform detail pages; ensure public access for browsing while gating catalog mutations behind authentication."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add per-user submission planning and tracking UI for platform statuses, notes, evidence links, and dashboard summary.",
+      "acceptanceCriteria": [
+        "A signed-in user can mark a platform as planned and update its status over time.",
+        "Each platform tracking item supports notes and optional evidence links (e.g., profile/submission URL).",
+        "A user can see a dashboard summary (counts by status)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/submissions/SubmissionPlanDashboardPage.tsx",
+          "operation": "create",
+          "description": "Create a signed-in dashboard showing counts by status and a list of the user's planned platforms with quick status updates."
+        },
+        {
+          "path": "frontend/src/components/submissions/SubmissionPlanEditor.tsx",
+          "operation": "create",
+          "description": "Add UI to set status, notes, submission URL, and dates for a platform plan item, with validation and RTL-friendly layout."
+        },
+        {
+          "path": "frontend/src/components/submissions/StatusBadge.tsx",
+          "operation": "create",
+          "description": "Create a compact visual indicator for listing status values used across tables and cards."
+        },
+        {
+          "path": "frontend/src/hooks/useSubmissionPlans.ts",
+          "operation": "create",
+          "description": "Create react-query hooks to load the current user's submission plans and to upsert plan changes (authenticated)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a protected route and navigation item for the Submission Plan dashboard; ensure it is inaccessible to signed-out users."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build the SEO Content Generator workspace UI: topic input + optional image upload, draft editor with versions, and export options.",
+      "acceptanceCriteria": [
+        "User can create a content project from a topic and optionally attach an image file.",
+        "Generated draft persists in backend and can be reopened later.",
+        "Draft includes: structured article text, at least 5 title options, one meta description, and a list of tags.",
+        "User can export draft as Markdown and copy to clipboard."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/content/ContentWorkspacePage.tsx",
+          "operation": "create",
+          "description": "Create the main content workspace page (authenticated) with project creation, draft loading, editing, and export actions."
+        },
+        {
+          "path": "frontend/src/components/content/TopicInputCard.tsx",
+          "operation": "create",
+          "description": "Add the topic input UI (required) and optional image attachment UI, including basic validation and Persian-friendly form UX."
+        },
+        {
+          "path": "frontend/src/components/content/ImageUploadField.tsx",
+          "operation": "create",
+          "description": "Implement optional image selection and upload using the blob-storage ExternalBlob representation; display preview via direct URL when available. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/content/DraftEditor.tsx",
+          "operation": "create",
+          "description": "Add a structured editor for sections (intro/body/conclusion), meta description, titles list, tags, and keywords, ensuring RTL-safe multi-line rendering."
+        },
+        {
+          "path": "frontend/src/components/content/VersionHistoryPanel.tsx",
+          "operation": "create",
+          "description": "Show version history for a draft and allow restoring/opening prior versions (authenticated)."
+        },
+        {
+          "path": "frontend/src/components/content/ExportActions.tsx",
+          "operation": "create",
+          "description": "Add copy-to-clipboard and Markdown export (download) actions for the draft content."
+        },
+        {
+          "path": "frontend/src/hooks/useContentDrafts.ts",
+          "operation": "create",
+          "description": "Create react-query hooks for creating/updating drafts, listing/reopening drafts, and adding draft versions (authenticated)."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update frontend backend type definitions as needed to support listing/reopening drafts and version history operations used by the UI."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a protected route and navigation item for the Content Workspace module."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement keyword research UI with optional admin-configured external providers and a manual keyword mode fallback with scoring and density targets.",
+      "acceptanceCriteria": [
+        "Admin can add/edit/remove keyword provider configurations (name, base URL, headers/params placeholders) or disable integrations entirely.",
+        "If a provider is configured, the UI can fetch and display keyword suggestions for a topic.",
+        "If no provider is configured (or call fails), users can enter keywords manually and set target density ranges."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/keywords/KeywordToolsPage.tsx",
+          "operation": "create",
+          "description": "Create a tools page for keyword suggestions/manual entry, integrated with the content workspace (authenticated)."
+        },
+        {
+          "path": "frontend/src/components/keywords/ProviderConfigPanel.tsx",
+          "operation": "create",
+          "description": "Add admin-only UI for managing keyword provider configurations (generic REST settings and enable/disable), including confirmation for destructive actions."
+        },
+        {
+          "path": "frontend/src/components/keywords/KeywordSuggestionsPanel.tsx",
+          "operation": "create",
+          "description": "Implement UI to request keyword suggestions using configured providers; gracefully fall back to manual mode on missing config or failures."
+        },
+        {
+          "path": "frontend/src/components/keywords/ManualKeywordEntry.tsx",
+          "operation": "create",
+          "description": "Provide manual keyword entry with per-keyword scoring inputs and density target ranges tailored for Iranian market workflows (UI-only scoring model)."
+        },
+        {
+          "path": "frontend/src/hooks/useKeywordProviders.ts",
+          "operation": "create",
+          "description": "Add hooks for loading/saving provider configurations (admin-only) and for requesting suggestions (if backend capability exists), with robust error handling."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update frontend backend type definitions as needed for keyword provider configuration CRUD and suggestions capabilities referenced by the UI."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire navigation and route access: keyword tools available to authenticated users; provider management UI restricted to admins via admin guard."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add an on-page SEO analyzer UI for drafts with score breakdown, prioritized suggestions, and draft-linked results display.",
+      "acceptanceCriteria": [
+        "Analyzer produces a score breakdown and a list of actionable suggestions for a draft.",
+        "Checks include: title length, meta description length, presence of H2/H3 structure, keyword density, and readability heuristics.",
+        "Results are stored with the draft and visible in the UI."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/analyzer/SeoAnalyzerPanel.tsx",
+          "operation": "create",
+          "description": "Create an analyzer panel that computes checks (title/meta length, heading structure, keyword density, reading time, readability heuristics) and outputs prioritized suggestions with a score breakdown."
+        },
+        {
+          "path": "frontend/src/utils/seoAnalyzer.ts",
+          "operation": "create",
+          "description": "Implement deterministic analyzer logic used by the UI (no prohibited LLM providers), including Persian-aware word counting and density heuristics."
+        },
+        {
+          "path": "frontend/src/hooks/useSeoAnalysis.ts",
+          "operation": "create",
+          "description": "Add hooks to persist/retrieve analysis results tied to a draft when the backend capability is available; fall back to local session persistence if needed until backend support is present."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update frontend backend type definitions as needed to support saving and loading SEO analysis results associated with drafts."
+        },
+        {
+          "path": "frontend/src/pages/content/ContentWorkspacePage.tsx",
+          "operation": "modify",
+          "description": "Wire the analyzer panel into the content workspace so users can run analysis on the current draft and view results alongside the draft."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create performance tracking UI with manual and CSV import/export, page/draft comparisons, and timeline charts.",
+      "acceptanceCriteria": [
+        "User can create tracked pages and associate them with generated drafts.",
+        "User can add metric snapshots manually and via CSV import; CSV export is available.",
+        "UI shows comparison views across two or more pages/drafts and a timeline chart per page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/performance/PerformanceTrackingPage.tsx",
+          "operation": "create",
+          "description": "Create a performance tracking page (authenticated) to manage tracked pages, associate them to drafts, and review metrics over time."
+        },
+        {
+          "path": "frontend/src/components/performance/TrackedPageForm.tsx",
+          "operation": "create",
+          "description": "Add UI to create/edit tracked pages with URL and target keywords and optional association to a content draft."
+        },
+        {
+          "path": "frontend/src/components/performance/MetricsTable.tsx",
+          "operation": "create",
+          "description": "Render metric snapshots in a table with filtering by period and CSV export action."
+        },
+        {
+          "path": "frontend/src/components/performance/CsvImportExport.tsx",
+          "operation": "create",
+          "description": "Implement CSV import parsing and validation for metric snapshots, plus CSV export generation for selected tracked pages/time windows."
+        },
+        {
+          "path": "frontend/src/components/performance/TimelineChart.tsx",
+          "operation": "create",
+          "description": "Add a lightweight timeline chart component (SVG-based) for visits/impressions/clicks/avg position without introducing prohibited dependencies."
+        },
+        {
+          "path": "frontend/src/components/performance/ComparisonView.tsx",
+          "operation": "create",
+          "description": "Add comparison UI for two or more tracked pages/drafts, showing side-by-side key metrics and trends."
+        },
+        {
+          "path": "frontend/src/hooks/usePerformanceTracking.ts",
+          "operation": "create",
+          "description": "Add hooks for loading/saving tracked pages and metric snapshots, including add metric capability and queries by period."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update frontend backend type definitions as needed for performance tracking records CRUD and association with drafts."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a protected route and navigation item for Performance Tracking, including comparison navigation within the module."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Provide an in-app admin panel to manage platforms, submission plans, drafts, keywords/providers, and performance records with search/filter and confirmations.",
+      "acceptanceCriteria": [
+        "Admin area includes sections for: Platforms, Submission Plans, Content Drafts, Keywords/Providers, Performance Tracking.",
+        "All managed records show created/updated timestamps and can be searched/filtered.",
+        "Destructive actions require a confirmation step."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/admin/AdminLayout.tsx",
+          "operation": "create",
+          "description": "Create an admin layout with section navigation and consistent tables/forms styling; restrict access via admin guard."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminPlatformsPage.tsx",
+          "operation": "create",
+          "description": "Admin section for platform catalog management with search/filter, created/updated timestamp display, and confirmation for destructive actions."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminSubmissionPlansPage.tsx",
+          "operation": "create",
+          "description": "Admin section to browse submission plans with search/filter and audit-friendly timestamps (read-only unless explicitly needed by requirements)."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminDraftsPage.tsx",
+          "operation": "create",
+          "description": "Admin section to browse content drafts and versions with search/filter and timestamps; reuse existing workspace UI where appropriate."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminKeywordsPage.tsx",
+          "operation": "create",
+          "description": "Admin section for keyword/provider management with enable/disable and confirmation for destructive actions."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminPerformancePage.tsx",
+          "operation": "create",
+          "description": "Admin section to browse performance tracking records with search/filter and timestamps."
+        },
+        {
+          "path": "frontend/src/components/common/DataTable.tsx",
+          "operation": "create",
+          "description": "Add a reusable responsive table wrapper with RTL-aware alignment, client-side search/filter helpers, and timestamp formatting."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire /admin routes for all required admin sections and protect them with the admin guard; ensure destructive actions use the shared confirmation dialog."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Create and apply a distinctive visual theme suitable for an Iranian-market SEO/productivity dashboard (not blue/purple primary).",
+      "acceptanceCriteria": [
+        "Theme is applied consistently to navigation, cards, tables, forms, and charts.",
+        "Theme avoids default/unstyled template look and does not rely on blue/purple as the primary palette.",
+        "RTL styling is polished (proper alignment, icon placement, spacing)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define theme design tokens (CSS variables) for warm neutral palette, typography, spacing, and component surfaces; ensure RTL refinements for alignment and icon placement."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Align Tailwind theme extensions with the new design tokens to ensure consistent styling across cards, tables, forms, and charts."
+        },
+        {
+          "path": "frontend/src/components/layout/AppShell.tsx",
+          "operation": "create",
+          "description": "Create the main layout shell (header/sidebar/content) applying theme styles consistently and supporting both RTL and LTR."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Adopt AppShell across all routes and ensure consistent theming on all module pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add contextual help and a dismissible onboarding checklist in Persian and English across main module screens.",
+      "acceptanceCriteria": [
+        "Each main module screen includes a help panel or tooltip entry points.",
+        "Onboarding checklist can be dismissed and re-opened.",
+        "Help text is available in Persian (primary) and English (secondary)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/help/HelpPanel.tsx",
+          "operation": "create",
+          "description": "Create a reusable contextual help panel component that can be embedded in module pages and supports fa/en strings."
+        },
+        {
+          "path": "frontend/src/components/help/OnboardingChecklist.tsx",
+          "operation": "create",
+          "description": "Implement a short onboarding checklist (plan listing, generate draft, run analysis, track performance) with dismiss/reopen behavior persisted locally."
+        },
+        {
+          "path": "frontend/src/i18n/messages.ts",
+          "operation": "modify",
+          "description": "Add bilingual help content strings (Persian primary, English secondary) for each module and checklist step."
+        },
+        {
+          "path": "frontend/src/pages/platforms/PlatformsListPage.tsx",
+          "operation": "modify",
+          "description": "Embed contextual help entry points relevant to browsing and managing the platform catalog."
+        },
+        {
+          "path": "frontend/src/pages/submissions/SubmissionPlanDashboardPage.tsx",
+          "operation": "modify",
+          "description": "Embed contextual help explaining how to build and maintain a free listing submission plan."
+        },
+        {
+          "path": "frontend/src/pages/content/ContentWorkspacePage.tsx",
+          "operation": "modify",
+          "description": "Embed contextual help for draft generation/editing, export actions, and running SEO analysis."
+        },
+        {
+          "path": "frontend/src/pages/performance/PerformanceTrackingPage.tsx",
+          "operation": "modify",
+          "description": "Embed contextual help for adding/importing metrics, exporting CSV, and using comparison charts."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the onboarding checklist so it appears in the authenticated workspace context and can be reopened from navigation/help affordances."
+        }
+      ]
+    }
+  ]
+}

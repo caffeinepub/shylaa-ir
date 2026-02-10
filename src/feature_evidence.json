@@ -1,0 +1,267 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-responsive-persian-first-rtl-web-app-ui-with-an-english-option-ensuring-all-layouts-form-controls-tables-and-rich-text-outputs-render-correctly-in-rtl-and-support-persian-numerals-and-typography",
+      "featureTitle": "Create a responsive, Persian-first (RTL) web app UI with an English option, ensuring all layouts, form controls, tables, and rich text outputs render correctly in RTL and support Persian numerals and typography.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/i18n/LanguageProvider.tsx",
+        "frontend/src/i18n/messages.ts",
+        "frontend/src/index.css",
+        "frontend/src/utils/locale.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-internet-identity-sign-in-and-gate-all-create-update-delete-actions-behind-authenticated-sessions-unauthenticated-users-may-browse-public-reference-content-only",
+      "featureTitle": "Implement Internet Identity sign-in and gate all create/update/delete actions behind authenticated sessions; unauthenticated users may browse public reference content only.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/LoginButton.tsx",
+        "frontend/src/components/auth/ProfileSetupModal.tsx",
+        "frontend/src/components/auth/RequireAdmin.tsx",
+        "frontend/src/components/auth/RequireAuth.tsx",
+        "frontend/src/components/common/AccessDeniedScreen.tsx",
+        "frontend/src/hooks/useActor.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-free-site-listing-module-maintain-a-curated-catalog-of-platforms-directories-forums-social-content-sharing-that-allow-free-website-submission-including-category-topic-country-region-estimated-seo-impact-estimated-traffic-potential-requirements-and-a-step-by-step-submission-guide",
+      "featureTitle": "Build the “Free Site Listing” module: maintain a curated catalog of platforms (directories/forums/social/content sharing) that allow free website submission, including category/topic, country/region, estimated SEO impact, estimated traffic potential, requirements, and a step-by-step submission guide.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/common/ConfirmDialog.tsx",
+        "frontend/src/components/platforms/PlatformFilters.tsx",
+        "frontend/src/pages/platforms/PlatformDetailPage.tsx",
+        "frontend/src/pages/platforms/PlatformsListPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-user-workflow-features-for-the-free-site-listing-module-allow-users-to-create-a-submission-plan-for-shylaa-ir-track-per-platform-status-not-started-in-progress-submitted-accepted-rejected-store-notes-and-record-submission-urls-and-dates",
+      "featureTitle": "Add user workflow features for the Free Site Listing module: allow users to create a submission plan for shylaa.ir, track per-platform status (Not started / In progress / Submitted / Accepted / Rejected), store notes, and record submission URLs and dates.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/submissions/StatusBadge.tsx",
+        "frontend/src/components/submissions/SubmissionPlanEditor.tsx",
+        "frontend/src/pages/submissions/SubmissionPlanDashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-seo-content-generator-module-as-a-structured-content-workspace-accept-a-topic-required-and-optional-image-upload-then-produce-a-draft-including-blog-article-sections-intro-body-conclusion-suggested-titles-meta-description-and-seo-tags-store-all-drafts-with-version-history-and-export-options-copy-markdown",
+      "featureTitle": "Build the “SEO Content Generator” module as a structured content workspace: accept a topic (required) and optional image upload, then produce a draft including blog article sections (intro/body/conclusion), suggested titles, meta description, and SEO tags; store all drafts with version history and export options (copy, Markdown).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/content/DraftEditor.tsx",
+        "frontend/src/components/content/ExportActions.tsx",
+        "frontend/src/components/content/ImageUploadField.tsx",
+        "frontend/src/components/content/TopicInputCard.tsx",
+        "frontend/src/pages/content/ContentWorkspacePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-keyword-research-inputs-and-recommendations-without-relying-on-prohibited-llm-providers-allow-admins-to-configure-one-or-more-external-rest-endpoints-optional-for-keyword-suggestions-when-not-configured-provide-a-manual-keyword-entry-mode-with-scoring-and-density-targets-for-the-iranian-market",
+      "featureTitle": "Implement keyword research inputs and recommendations without relying on prohibited LLM providers: allow admins to configure one or more external REST endpoints (optional) for keyword suggestions; when not configured, provide a manual keyword entry mode with scoring and density targets for the Iranian market.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/keywords/ManualKeywordEntry.tsx",
+        "frontend/src/pages/keywords/KeywordToolsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-seo-analyzer-for-generated-drafts-compute-on-page-checks-heading-structure-presence-title-meta-length-ranges-keyword-density-per-keyword-internal-checklist-for-mobile-friendly-readability-approximate-reading-time-and-output-prioritized-improvement-suggestions",
+      "featureTitle": "Add an SEO analyzer for generated drafts: compute on-page checks (heading structure presence, title/meta length ranges, keyword density per keyword, internal checklist for mobile-friendly readability, approximate reading time) and output prioritized improvement suggestions.",
+      "files": [
+        "frontend/src/components/analyzer/SeoAnalyzerPanel.tsx",
+        "frontend/src/pages/content/ContentWorkspacePage.tsx",
+        "frontend/src/utils/seoAnalyzer.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-lightweight-performance-tracking-module-for-monitoring-results-allow-users-to-record-page-urls-target-keywords-and-periodic-metrics-visits-impressions-clicks-average-position-via-manual-entry-and-csv-import-export-provide-comparison-charts-across-content-items-and-time-periods",
+      "featureTitle": "Create a lightweight “Performance Tracking” module for monitoring results: allow users to record page URLs, target keywords, and periodic metrics (visits, impressions, clicks, average position) via manual entry and CSV import/export; provide comparison charts across content items and time periods.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/performance/PerformanceTrackingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-an-admin-panel-for-shylaa-ir-blog-inside-the-app-to-manage-platform-catalog-entries-content-drafts-keywords-and-performance-tracking-records-including-search-filtering-and-audit-friendly-timestamps-created-updated",
+      "featureTitle": "Provide an “Admin panel for shylaa.ir blog” inside the app to manage platform catalog entries, content drafts, keywords, and performance tracking records, including search, filtering, and audit-friendly timestamps (created/updated).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/admin/AdminDraftsPage.tsx",
+        "frontend/src/pages/admin/AdminKeywordsPage.tsx",
+        "frontend/src/pages/admin/AdminLayout.tsx",
+        "frontend/src/pages/admin/AdminPerformancePage.tsx",
+        "frontend/src/pages/admin/AdminPlatformsPage.tsx",
+        "frontend/src/pages/admin/AdminSubmissionPlansPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-coherent-distinctive-visual-theme-colors-typography-spacing-and-component-styling-suitable-for-an-seo-productivity-dashboard-for-the-iranian-market-and-apply-it-consistently-across-all-screens",
+      "featureTitle": "Add a coherent, distinctive visual theme (colors, typography, spacing, and component styling) suitable for an SEO/productivity dashboard for the Iranian market, and apply it consistently across all screens.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/AppShell.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-in-app-help-content-contextual-tips-and-a-short-onboarding-checklist-explaining-how-to-1-build-a-free-listing-submission-plan-2-generate-a-draft-3-run-seo-analysis-and-4-track-performance",
+      "featureTitle": "Add basic in-app help content: contextual tips and a short onboarding checklist explaining how to (1) build a free listing submission plan, (2) generate a draft, (3) run SEO analysis, and (4) track performance.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/i18n/messages.ts",
+        "frontend/src/pages/content/ContentWorkspacePage.tsx",
+        "frontend/src/pages/performance/PerformanceTrackingPage.tsx",
+        "frontend/src/pages/platforms/PlatformsListPage.tsx",
+        "frontend/src/pages/submissions/SubmissionPlanDashboardPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

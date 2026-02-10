@@ -1,0 +1,256 @@
+{
+  "kind": "build_request",
+  "title": "SEO & Content Marketing Platform for shylaa.ir (Persian-first, with free listing directories and content workflow)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a responsive, Persian-first (RTL) web app UI with an English option, ensuring all layouts, form controls, tables, and rich text outputs render correctly in RTL and support Persian numerals and typography.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "پشتیبانی از زبان فارسی و سازگاری با فرهنگ محتوایی ایران.",
+          "طراحی واکنش‌گرا"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App supports RTL layout for Persian and LTR for English via a language toggle.",
+        "Core screens are usable on mobile and desktop without horizontal scrolling.",
+        "Generated content views render Persian punctuation/line breaks correctly."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement Internet Identity sign-in and gate all create/update/delete actions behind authenticated sessions; unauthenticated users may browse public reference content only.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "پنل مدیریت برای وبلاگ shylaa.ir."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A user can sign in/out with Internet Identity.",
+        "When signed out, mutation actions (create/edit/delete) are disabled and prompt sign-in.",
+        "When signed in, the user can access admin/workspace features."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build the “Free Site Listing” module: maintain a curated catalog of platforms (directories/forums/social/content sharing) that allow free website submission, including category/topic, country/region, estimated SEO impact, estimated traffic potential, requirements, and a step-by-step submission guide.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "شناسایی و لیست‌بندی مکان‌های معتبر داخلی و خارجی ...",
+          "دسته‌بندی بر اساس موضوع، میزان تأثیر بر سئو و ترافیک تولیدشده.",
+          "راهنمای گام‌به‌گام برای ثبت صحیح سایت در هر پلتفرم."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores platform entries with fields for category/topic, region, impact score, traffic score, and a step-by-step guide.",
+        "Frontend provides list + filters (category, region, impact/traffic) and a platform detail page.",
+        "Authenticated users can create/edit/delete platform entries; unauthenticated users can only view."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add user workflow features for the Free Site Listing module: allow users to create a submission plan for shylaa.ir, track per-platform status (Not started / In progress / Submitted / Accepted / Rejected), store notes, and record submission URLs and dates.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "افزایش بازدید رایگان از طریق معرفی سایت در پلت‌فرم‌های معتبر."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A signed-in user can mark a platform as planned and update its status over time.",
+        "Each platform tracking item supports notes and optional evidence links (e.g., profile/submission URL).",
+        "A user can see a dashboard summary (counts by status)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build the “SEO Content Generator” module as a structured content workspace: accept a topic (required) and optional image upload, then produce a draft including blog article sections (intro/body/conclusion), suggested titles, meta description, and SEO tags; store all drafts with version history and export options (copy, Markdown).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "قابلیت دریافت موضوع یا تصویر از کاربر و تولید خودکار محتوا شامل:",
+          "مقالات وبلاگ با ساختار اصولی (مقدمه، بدنه، نتیجه).",
+          "تولید عنوان‌های جذاب، متا دیسکریپشن و تگ‌های سئو."
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can create a content project from a topic and optionally attach an image file.",
+        "Generated draft persists in backend and can be reopened later.",
+        "Draft includes: structured article text, at least 5 title options, one meta description, and a list of tags.",
+        "User can export draft as Markdown and copy to clipboard."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement keyword research inputs and recommendations without relying on prohibited LLM providers: allow admins to configure one or more external REST endpoints (optional) for keyword suggestions; when not configured, provide a manual keyword entry mode with scoring and density targets for the Iranian market.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "یکپارچه‌سازی با ابزارهای تحلیل کلمات کلیدی برای پیشنهاد بهترین کلیدواژه‌ها.",
+          "بهینه‌سازی محتوا با کلمات کلیدی پرجستجو در ایران و رعایت چگالی مناسب."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin can add/edit/remove keyword provider configurations (name, base URL, headers/params placeholders) or disable integrations entirely.",
+        "If a provider is configured, the UI can fetch and display keyword suggestions for a topic.",
+        "If no provider is configured (or call fails), users can enter keywords manually and set target density ranges."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add an SEO analyzer for generated drafts: compute on-page checks (heading structure presence, title/meta length ranges, keyword density per keyword, internal checklist for mobile-friendly readability, approximate reading time) and output prioritized improvement suggestions.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "تحلیل محتوای تولیدشده از نظر معیارهای سئو ...",
+          "پیشنهاد‌های بهبود بر اساس الگوریتم‌های گوگل."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Analyzer produces a score breakdown and a list of actionable suggestions for a draft.",
+        "Checks include: title length, meta description length, presence of H2/H3 structure, keyword density, and readability heuristics.",
+        "Results are stored with the draft and visible in the UI."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create a lightweight “Performance Tracking” module for monitoring results: allow users to record page URLs, target keywords, and periodic metrics (visits, impressions, clicks, average position) via manual entry and CSV import/export; provide comparison charts across content items and time periods.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ارائه گزارش‌های تحلیلی از میزان بازدید و رتبه‌بندی صفحات ...",
+          "امکان مقایسه عملکرد محتواهای مختلف."
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can create tracked pages and associate them with generated drafts.",
+        "User can add metric snapshots manually and via CSV import; CSV export is available.",
+        "UI shows comparison views across two or more pages/drafts and a timeline chart per page."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Provide an “Admin panel for shylaa.ir blog” inside the app to manage platform catalog entries, content drafts, keywords, and performance tracking records, including search, filtering, and audit-friendly timestamps (created/updated).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "پنل مدیریت برای وبلاگ shylaa.ir جهت مدیریت محتوا و خروجی‌های تولیدشده"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin area includes sections for: Platforms, Submission Plans, Content Drafts, Keywords/Providers, Performance Tracking.",
+        "All managed records show created/updated timestamps and can be searched/filtered.",
+        "Destructive actions require a confirmation step."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Implement persistent storage in the single Motoko actor for all core entities (platform catalog, user submission plans/status, content drafts and versions, SEO analysis results, performance tracking snapshots, and integration configurations).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ایجاد یک پلتفرم هوشمند ...",
+          "پایش نتایج",
+          "پنل مدیریت"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All entities are stored and remain available after canister upgrade/redeploy (using stable storage patterns).",
+        "API methods exist for CRUD operations and are authorization-aware (owner/admin checks).",
+        "Backend exposes query methods for list/filter needs used by the UI."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Add a coherent, distinctive visual theme (colors, typography, spacing, and component styling) suitable for an SEO/productivity dashboard for the Iranian market, and apply it consistently across all screens.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "توسعه اپلیکیشن جامع سئو و بازاریابی محتوایی"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Theme is applied consistently to navigation, cards, tables, forms, and charts.",
+        "Theme avoids default/unstyled template look and does not rely on blue/purple as the primary palette.",
+        "RTL styling is polished (proper alignment, icon placement, spacing)."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Add basic in-app help content: contextual tips and a short onboarding checklist explaining how to (1) build a free listing submission plan, (2) generate a draft, (3) run SEO analysis, and (4) track performance.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "راهنمای گام‌به‌گام ...",
+          "خروجی مورد انتظار ..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each main module screen includes a help panel or tooltip entry points.",
+        "Onboarding checklist can be dismissed and re-opened.",
+        "Help text is available in Persian (primary) and English (secondary)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use a single Motoko actor for all backend logic (no multi-canister backend).",
+    "Do not modify any files under frontend/src/components/ui or other immutable paths; compose UI using existing components.",
+    "Do not use prohibited third-party authentication providers; only Internet Identity is allowed.",
+    "Do not integrate prohibited LLM providers (e.g., OpenAI/Anthropic); external REST APIs are allowed only as configurable generic endpoints supplied by the admin."
+  ],
+  "nonGoals": [
+    "Automatic submission/posting to third-party platforms on behalf of the user (only guides and tracking).",
+    "Scraping/crawling external websites to discover directories automatically.",
+    "Guaranteeing Google ranking improvements or traffic outcomes.",
+    "Real-time features via WebSockets/push notifications.",
+    "Direct integration with Google Search Console/Analytics unless provided as a generic REST endpoint configuration by the user and feasible without violating platform limits."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimal Persian-friendly dashboard logo mark with geometric motif (logo-mark.dim_512x512.png)",
+      "Wide hero banner illustration showing abstract charts, documents, and search icons in a warm neutral palette (hero-banner.dim_1600x600.png)",
+      "Set of 6 monochrome module icons (directory, pencil, tag, checklist, chart, settings) in consistent stroke style (module-icons-sheet.dim_1024x1024.png)"
+    ],
+    "edits": []
+  }
+}

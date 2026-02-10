@@ -1,2 +1,3 @@
-# shylaa-ir
-Exported from Caffeine project: اپلیکیشن جامع سئو و بازاریابی محتوایی برای shylaa.ir
+## اپلیکیشن جامع سئو و بازاریابی محتوایی برای shylaa.ir
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "توسعه یک پلتفرم جامع سئو و بازاریابی محتوایی برای shylaa.ir با تمرکز بر افزایش ترافیک ارگانیک از طریق معرفی رایگان سایت در پلتفرم‌های معتبر و تولید محتوای سئو-محور ویژه بازار ایران، همراه با تحلیل سئو و پایش نتایج.",
+  "architectural_notes": [
+    "پلتفرم به‌صورت واکنش‌گرا (وب یا موبایل) طراحی شود.",
+    "یکپارچه‌سازی با APIهای پردازش متن و تصویر برای تولید محتوا.",
+    "یکپارچه‌سازی با ابزارهای تحلیل کلمات کلیدی برای پیشنهاد کلیدواژه.",
+    "وجود پنل مدیریت اختصاصی برای وبلاگ shylaa.ir.",
+    "پشتیبانی کامل از زبان فارسی و ملاحظات محتوایی/فرهنگی بازار ایران."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimal Persian-friendly dashboard logo mark with geometric motif (logo-mark.dim_512x512.png)\n- Wide hero banner illustration showing abstract charts, documents, and search icons in a warm neutral palette (hero-banner.dim_1600x600.png)\n- Set of 6 monochrome module icons (directory, pencil, tag, checklist, chart, settings) in consistent stroke style (module-icons-sheet.dim_1024x1024.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-persian-first-rtl-web-app-ui-with-an-english-option-ensuring-all-layouts-form-controls-tables-and-rich-text-outputs-render-correctly-in-rtl-and-support-persian-numerals-and-typography",
+      "title": "Create a responsive, Persian-first (RTL) web app UI with an English option, ensuring all layouts, form controls, tables, and rich text outputs render correctly in RTL and support Persian numerals and typography.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-internet-identity-sign-in-and-gate-all-create-update-delete-actions-behind-authenticated-sessions-unauthenticated-users-may-browse-public-reference-content-only",
+      "title": "Implement Internet Identity sign-in and gate all create/update/delete actions behind authenticated sessions; unauthenticated users may browse public reference content only.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-free-site-listing-module-maintain-a-curated-catalog-of-platforms-directories-forums-social-content-sharing-that-allow-free-website-submission-including-category-topic-country-region-estimated-seo-impact-estimated-traffic-potential-requirements-and-a-step-by-step-submission-guide",
+      "title": "Build the “Free Site Listing” module: maintain a curated catalog of platforms (directories/forums/social/content sharing) that allow free website submission, including category/topic, country/region, estimated SEO impact, estimated traffic potential, requirements, and a step-by-step submission guide.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-user-workflow-features-for-the-free-site-listing-module-allow-users-to-create-a-submission-plan-for-shylaa-ir-track-per-platform-status-not-started-in-progress-submitted-accepted-rejected-store-notes-and-record-submission-urls-and-dates",
+      "title": "Add user workflow features for the Free Site Listing module: allow users to create a submission plan for shylaa.ir, track per-platform status (Not started / In progress / Submitted / Accepted / Rejected), store notes, and record submission URLs and dates.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-seo-content-generator-module-as-a-structured-content-workspace-accept-a-topic-required-and-optional-image-upload-then-produce-a-draft-including-blog-article-sections-intro-body-conclusion-suggested-titles-meta-description-and-seo-tags-store-all-drafts-with-version-history-and-export-options-copy-markdown",
+      "title": "Build the “SEO Content Generator” module as a structured content workspace: accept a topic (required) and optional image upload, then produce a draft including blog article sections (intro/body/conclusion), suggested titles, meta description, and SEO tags; store all drafts with version history and export options (copy, Markdown).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-keyword-research-inputs-and-recommendations-without-relying-on-prohibited-llm-providers-allow-admins-to-configure-one-or-more-external-rest-endpoints-optional-for-keyword-suggestions-when-not-configured-provide-a-manual-keyword-entry-mode-with-scoring-and-density-targets-for-the-iranian-market",
+      "title": "Implement keyword research inputs and recommendations without relying on prohibited LLM providers: allow admins to configure one or more external REST endpoints (optional) for keyword suggestions; when not configured, provide a manual keyword entry mode with scoring and density targets for the Iranian market.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-seo-analyzer-for-generated-drafts-compute-on-page-checks-heading-structure-presence-title-meta-length-ranges-keyword-density-per-keyword-internal-checklist-for-mobile-friendly-readability-approximate-reading-time-and-output-prioritized-improvement-suggestions",
+      "title": "Add an SEO analyzer for generated drafts: compute on-page checks (heading structure presence, title/meta length ranges, keyword density per keyword, internal checklist for mobile-friendly readability, approximate reading time) and output prioritized improvement suggestions.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-lightweight-performance-tracking-module-for-monitoring-results-allow-users-to-record-page-urls-target-keywords-and-periodic-metrics-visits-impressions-clicks-average-position-via-manual-entry-and-csv-import-export-provide-comparison-charts-across-content-items-and-time-periods",
+      "title": "Create a lightweight “Performance Tracking” module for monitoring results: allow users to record page URLs, target keywords, and periodic metrics (visits, impressions, clicks, average position) via manual entry and CSV import/export; provide comparison charts across content items and time periods.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-an-admin-panel-for-shylaa-ir-blog-inside-the-app-to-manage-platform-catalog-entries-content-drafts-keywords-and-performance-tracking-records-including-search-filtering-and-audit-friendly-timestamps-created-updated",
+      "title": "Provide an “Admin panel for shylaa.ir blog” inside the app to manage platform catalog entries, content drafts, keywords, and performance tracking records, including search, filtering, and audit-friendly timestamps (created/updated).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-coherent-distinctive-visual-theme-colors-typography-spacing-and-component-styling-suitable-for-an-seo-productivity-dashboard-for-the-iranian-market-and-apply-it-consistently-across-all-screens",
+      "title": "Add a coherent, distinctive visual theme (colors, typography, spacing, and component styling) suitable for an SEO/productivity dashboard for the Iranian market, and apply it consistently across all screens.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-in-app-help-content-contextual-tips-and-a-short-onboarding-checklist-explaining-how-to-1-build-a-free-listing-submission-plan-2-generate-a-draft-3-run-seo-analysis-and-4-track-performance",
+      "title": "Add basic in-app help content: contextual tips and a short onboarding checklist explaining how to (1) build a free listing submission plan, (2) generate a draft, (3) run SEO analysis, and (4) track performance.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "ماژول معرفی رایگان سایت: شناسایی/لیست‌کردن پلتفرم‌های معتبر داخلی و خارجی برای ثبت رایگان سایت، با دسته‌بندی و راهنمای گام‌به‌گام",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "ماژول تولید محتوای سئو-محور: دریافت موضوع یا تصویر و تولید خودکار مقاله، عنوان، متا دیسکریپشن و تگ‌های سئو با تمرکز بر مخاطب ایرانی",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "پیشنهاد کلمات کلیدی: یکپارچه‌سازی با ابزارهای تحلیل کلمات کلیدی برای پیشنهاد کلیدواژه‌های پرجستجو در ایران و رعایت چگالی مناسب در محتوا",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "تحلیل و بهینه‌سازی سئو: ارزیابی محتوا/صفحات از نظر معیارهای سئو (ساختار هدینگ، موبایل‌فرندلی، سرعت و ...) و ارائه پیشنهاد بهبود مطابق الگوریتم‌های گوگل",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "پایش و گزارش‌دهی نتایج: گزارش‌های تحلیلی از بازدید و رتبه صفحات، و امکان مقایسه عملکرد محتواهای مختلف",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "پنل مدیریت برای وبلاگ shylaa.ir جهت مدیریت محتوا و خروجی‌های تولیدشده",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "رابط کاربری واکنش‌گرا (وب یا اپ موبایل) با پشتیبانی کامل از زبان فارسی و سازگاری فرهنگی بازار ایران",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "اتصال به APIهای پردازش متن و تصویر برای تولید محتوای هوشمند",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Implement persistent storage in the single Motoko actor for all core entities (platform catalog, user submission plans/status, content drafts and versions, SEO analysis results, performance tracking snapshots, and integration configurations).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "اپلیکیشن جامع سئو و بازاریابی محتوایی برای shylaa.ir",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

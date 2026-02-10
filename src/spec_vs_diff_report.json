@@ -1,0 +1,174 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-10T06:08:29.728Z",
+  "summary": "The diff adds a single Motoko actor and a new frontend app with routing, auth gating, platform listing UI pieces, submission plan editing, content draft workspace (with image upload and Markdown/copy export), and an on-page SEO analyzer panel. However, several BuildRequest requirements are not evidenced in the provided diff summary (notably persistent stable storage patterns, keyword provider configuration + REST fetching, and performance tracking CSV/charts details). There are also a couple of implemented behaviors not requested (e.g., initializing access control via a secret token in URL params).",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Ensure full Persian-first RTL UI with correct RTL/LTR switching and Persian numerals/typography across layouts, form controls, tables, and rich text outputs.",
+      "reason": "While a language toggle exists (AppShell toggleLanguage) and there is an i18n provider referenced, the diff summary does not show evidence of RTL/LTR direction switching at the document/layout level or Persian numerals/typography handling.",
+      "evidence": [
+        "frontend/src/components/layout/AppShell.tsx",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Platform catalog filters must include category, region, and impact/traffic, and the module should provide list + filters and a platform detail page.",
+      "reason": "The shown filter component includes category and country only; no region filter or impact/traffic filter is evidenced in the provided snippet. While list/detail pages are routed, their implementations are not shown in the diff summary.",
+      "evidence": [
+        "frontend/src/components/platforms/PlatformFilters.tsx",
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Show a dashboard summary (counts by status) for submission plans.",
+      "reason": "A dashboard page route exists, and there is an editor and badge, but the diff summary does not show any implementation of status-count aggregation/summary UI.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/submissions/SubmissionPlanEditor.tsx",
+        "frontend/src/components/submissions/StatusBadge.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Generated draft must include at least 5 title options and persist drafts with version history.",
+      "reason": "The UI shown creates drafts with sections/meta/tags/keywords, but there is no evidence of generating/storing 5+ title options. Backend type includes versionHistory, but the UI shown updates the draft directly without any visible version creation logic, and backend persistence behavior is truncated/unclear.",
+      "evidence": [
+        "frontend/src/components/content/TopicInputCard.tsx",
+        "frontend/src/components/content/DraftEditor.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Admin-configurable external REST keyword providers (CRUD) with ability to fetch keyword suggestions; fallback to manual entry if not configured or call fails.",
+      "reason": "Only a manual keyword entry component is shown. No provider configuration UI, provider CRUD, or keyword suggestion fetching is evidenced in the provided diff summary.",
+      "evidence": [
+        "frontend/src/components/keywords/ManualKeywordEntry.tsx",
+        "frontend/src/App.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Store SEO analysis results with the draft in the backend and display them in the UI.",
+      "reason": "A frontend analyzer panel computes analysis via a local utility (analyzeSeo), but there is no evidence in the shown backend types/state or API calls that analysis results are persisted with drafts.",
+      "evidence": [
+        "frontend/src/components/analyzer/SeoAnalyzerPanel.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Performance Tracking module with manual entry plus CSV import/export, association to drafts, and comparison/timeline charts.",
+      "reason": "A route exists for PerformanceTrackingPage and an AdminPerformancePage, but no CSV import/export, charting, or draft association implementation is evidenced in the diff summary. Backend shows a KeywordMetric type/map but not the described tracked pages + snapshot entities.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Admin panel sections must support search/filtering and show created/updated timestamps; destructive actions require confirmation.",
+      "reason": "Admin routes/pages exist and a ConfirmDialog component exists, but the diff summary does not show admin list UIs implementing search/filtering and timestamp display, nor actual usage of confirmation for destructive actions.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/common/ConfirmDialog.tsx"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Use stable storage patterns so all entities persist across canister upgrade/redeploy; provide authorization-aware CRUD and query methods for all core entities.",
+      "reason": "In the shown backend snippet, state is held in in-memory vars/Maps (e.g., nextPlatformId, platformCatalog, contentDrafts) with no evidenced stable variables or preupgrade/postupgrade handling. The file is truncated, so this may exist later, but it is not evidenced in the provided diff summary.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "requirement": "Apply a coherent, distinctive visual theme (non-blue/purple primary) consistently across navigation, cards, tables, forms, and charts with polished RTL styling.",
+      "reason": "ThemeProvider is present, but the diff summary does not evidence a defined custom theme/palette choice (especially the non-blue/purple requirement) nor chart styling (charts themselves are not evidenced).",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "In-app help content and onboarding checklist (dismissible/re-openable), available in Persian and English, with contextual tips in each main module.",
+      "reason": "No help panel, tooltips, or onboarding checklist components/content are evidenced in the provided diff summary.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Access control initialization via a secret URL parameter (caffeineAdminToken) and calling a backend method _initializeAccessControlWithSecret from the frontend actor hook.",
+      "reason": "The BuildRequest does not request URL-secret-based admin bootstrap/initialization. It specifies Internet Identity for auth, but not a secret-token elevation path via query params.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "User profile collection (name/email/organization) and mandatory profile setup modal after authentication.",
+      "reason": "The BuildRequest does not specify collecting or requiring user profile metadata; it only requires Internet Identity sign-in and gating mutations.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/auth/ProfileSetupModal.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/analyzer/SeoAnalyzerPanel.tsx",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/auth/ProfileSetupModal.tsx",
+    "frontend/src/components/auth/RequireAdmin.tsx",
+    "frontend/src/components/auth/RequireAuth.tsx",
+    "frontend/src/components/common/AccessDeniedScreen.tsx",
+    "frontend/src/components/common/ConfirmDialog.tsx",
+    "frontend/src/components/content/DraftEditor.tsx",
+    "frontend/src/components/content/ExportActions.tsx",
+    "frontend/src/components/content/ImageUploadField.tsx",
+    "frontend/src/components/content/TopicInputCard.tsx",
+    "frontend/src/components/keywords/ManualKeywordEntry.tsx",
+    "frontend/src/components/layout/AppShell.tsx",
+    "frontend/src/components/platforms/PlatformFilters.tsx",
+    "frontend/src/components/submissions/StatusBadge.tsx",
+    "frontend/src/components/submissions/SubmissionPlanEditor.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/i18n/LanguageProvider.tsx",
+    "frontend/src/i18n/messages.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/admin/AdminDraftsPage.tsx",
+    "frontend/src/pages/admin/AdminKeywordsPage.tsx",
+    "frontend/src/pages/admin/AdminLayout.tsx",
+    "frontend/src/pages/admin/AdminPerformancePage.tsx",
+    "frontend/src/pages/admin/AdminPlatformsPage.tsx",
+    "frontend/src/pages/admin/AdminSubmissionPlansPage.tsx",
+    "frontend/src/pages/content/ContentWorkspacePage.tsx",
+    "frontend/src/pages/keywords/KeywordToolsPage.tsx",
+    "frontend/src/pages/performance/PerformanceTrackingPage.tsx",
+    "frontend/src/pages/platforms/PlatformDetailPage.tsx",
+    "frontend/src/pages/platforms/PlatformsListPage.tsx",
+    "frontend/src/pages/submissions/SubmissionPlanDashboardPage.tsx",
+    "frontend/src/utils/locale.ts",
+    "frontend/src/utils/seoAnalyzer.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
